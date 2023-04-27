@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+float valorbem, valordepreciado, valorbemdepreciado, depreciacaoacumulada;
+int periodo, i;
+
+int main(void) {
+  printf("Informe o valor do bem a ser depreciado: \n");
+  scanf("%f", &valorbem);
+
+  printf("Informe o período da depreciação <em anos>: \n");
+  scanf("%i", &periodo);
+
+  printf("\nAno\t\tValor do Bem\t\tDepreciação\t\tValor Depreciado\n");
+  printf("=======================================================");
+
+  
+  for(i=1; i<=periodo; i++){
+  valordepreciado = valorbem * (1.5/100);
+  valorbemdepreciado = valorbem - valordepreciado;
+    if(i==1){
+    printf("\n%i\t\t%.2f\t\t\t%.2f\t\t\t\t%.2f\n", i, valorbem, valordepreciado, valorbemdepreciado);
+    }else{
+  printf("%i\t\t%.2f\t\t\t\t%.2f\t\t\t\t%.2f\n", i, valorbem, valordepreciado, valorbemdepreciado);
+    }
+  valorbem = valorbem - valordepreciado;
+  depreciacaoacumulada = depreciacaoacumulada+valordepreciado;
+  }   
+  printf("=======================================================");
+  printf("\nDepreciação acumulada: %.2f\n",depreciacaoacumulada);
+  return 0;
+}
