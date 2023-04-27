@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main(void) {
+
+  char categoria;
+  int quantidade, soma=0, total=0;
+  float media;
+  
+  do{
+    __fpurge(stdin);
+    printf("Informe a categoria: ");
+    scanf("%c", &categoria);
+    
+    if(categoria == 'A' ||  categoria == 'B'||  categoria == 'C'){
+      quantidade=-1;
+      while(quantidade <= 0){
+        printf("Informe a quantidade: ");
+        scanf(" %d", &quantidade);
+      }
+      soma = soma + quantidade;
+      total= total+1;
+    }
+
+    media = (float)soma/total;
+  
+  }while(categoria == 'A' ||  categoria == 'B'||  categoria == 'C');
+  printf("\nA média dos produtos é %.2f\n", media);
+  return 0;
+}
