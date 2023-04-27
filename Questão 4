@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int numero, digito, i=1;
+
+int main(void) {
+
+  do{
+    printf("Digite um número: ");
+    scanf(" %d", &numero);
+
+    //condição para sair do laço
+    if(numero<0){
+      i=-1;
+    //se não for negativo entra aqui
+    }else
+      digito=0;
+    
+    //se digitar 0 o digito vai ser 1 automaticamente 
+    if (numero == 0) {
+      digito = 1;
+    }
+      else{
+        //entra no looping dividindo por 10 e somando os digitos até que quociente da última divisão seja zero
+        while(numero>=1){
+          numero = numero / 10;
+          if(numero>0){
+            digito = digito + 1;
+          }
+        }
+      digito++;// soma mais um digito pois anteriormente o digito da última divisão não é contabilizado, já que numero fica = 0, não entra no if.
+      }
+    printf("Quantidade de dígitos: %i\n", digito);
+    printf("\n");
+   }while (i > 0);//condição para sair do do while
+  return 0;
+}
