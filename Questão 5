@@ -1,0 +1,107 @@
+
+#include <stdio.h>
+
+int op=0, quantidade, quantidadetotal, Resultado;
+float valor, soma, media;
+char resposta;
+
+int main(void) {
+  while(1){
+    switch(op){
+
+      //parte inicial que pede os dados e faz os calculos
+      case 0:
+      printf("\n");
+      printf("Informe a quantidade de um produto: ");
+      scanf(" %i", &quantidade);
+      if(quantidade != 0 || quantidade > 0){
+        printf("Informe o valor unitario do produto: ");
+        scanf(" %f", &valor);
+
+        //soma vai receber os valores dos produtos vezes a quantidade deles, mais ela mesma, isso em cada ciclo
+        soma = soma + (quantidade*valor);
+        //quantidadetotal é uma variavel criada para armazenar todos os valores de quantidade que entram em cada ciclo
+        quantidadetotal = quantidadetotal + quantidade;
+        media = soma / quantidadetotal;
+      }
+      if (quantidade == 0){
+        printf("VALOR TOTAL DA COMPRA: R$ %.2f\n", soma);
+        printf("VALOR MEDIO DA COMPRA: R$ %.2f\n", media);
+        printf("\n");
+        printf("O valor total da compra eh %i reais e %.2f centavos.\n", (int)soma, soma - ((int)soma));//no %i só vai pegar a parte inteira do float e no %.2f vai subtrair o inteiro deixando só o float
+        printf("\n");
+        printf("%i reais equivale a:\n", (int)soma);
+        printf("\n");
+        
+        // NOTAS DE 100
+        Resultado = (int)soma/100;//transforma em int, divide pelo valor que quer encontrar para achar o número de vezes que 100 está contido em soma
+        if(Resultado != 0){
+          //nao imprime o resultado se ele for igual a zero 
+          printf("%d nota(s) de 100 \n", Resultado);
+          soma = soma - (Resultado*100);//subtrai o valor encontrado para usar a váriavel soma na próxima execução
+        }
+        
+      // NOTAS DE 50
+        Resultado = (int)soma/50;
+        if(Resultado != 0){
+          printf("%d nota(s) de 50 \n", Resultado);
+          soma = soma - (Resultado*50);
+        }
+        
+      // NOTAS DE 20
+        Resultado = (int)soma/20;
+        if(Resultado != 0){
+          printf("%d nota(s) de 20 \n", Resultado);
+          soma = soma - (Resultado*20);
+        }
+        
+      // NOTAS DE 10
+        Resultado = (int)soma/10;
+        if(Resultado != 0){
+          printf("%d nota(s) de 10 \n", Resultado);
+          soma = soma - (Resultado*10);
+        }
+        
+        // NOTAS DE 5
+        Resultado = (int)soma/5;
+        if(Resultado != 0){
+          printf("%d nota(s) de 5 \n", Resultado);
+          soma = soma - (Resultado*5);
+        }
+          
+      // NOTAS DE 2
+        Resultado = (int)soma/2;
+        if(Resultado != 0){
+          printf("%d nota(s) de 2 \n", Resultado);
+          soma = soma - (Resultado*2);
+        }
+          
+      // MOEDAS DE 1
+        Resultado = (int)soma/1;
+        if(Resultado != 0){
+          printf("%d moeda(s) de 1 \n", Resultado);
+          soma = (soma - (Resultado*1)) * 100;
+        }
+        
+        op=2;//vai para o case 2
+      }
+      break;
+      
+
+      case 2:
+      printf("\n");
+      printf("Deseja repetir o programa (S ou N)?");
+      scanf(" %c", &resposta);
+      if(resposta == 's' || resposta == 'S'){
+        soma=0;//"reseta" esses valores para funcionar nas próximas execuções
+        quantidadetotal=0;
+        media=0;
+        op=0;
+      }if (resposta == 'n' || resposta == 'N'){
+        op=10;//valor que não existe para encerrar o ciclo
+        break;
+      }
+    } 
+  }
+  return 0;
+}
